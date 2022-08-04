@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto&display=swap');
+
+$color-red: #F1615E;
+$bg-color-blue: #353342;
+$color-white: #E9EAEC;
+$color-light-blue: #444652;
+$color-gray: #5c5c73;
+$big-font-size: 60px;
+$middle-font-size: 40px;
+$regular-font-size: 30px;
+$small-font-size: 20px;
+$default-font-family: "Rajdhani", sans-serif;
+
+.authorization-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sign-in-information {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 50vw;
+  height: 100%;
+  background-color: $color-red;
+}
+
+.title {
+  width: 50%;
+  margin-right: 150px;
+}
+
+.title__text {
+  font-family: $default-font-family;
+  font-size: $big-font-size;
+  color: $color-white;
+  text-align: right;
+}
+
+.sign-in-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 50vw;
+  height: 100%;
+  background-color: $bg-color-blue;
+}
+
+.sign-in-title {
+  display: flex;
+  align-items: center;
+  padding-left: 150px;
+  padding-bottom: 50px;
+  width: 100%;
+}
+
+.sign-in-title__text {
+  display: inline-block;
+  font-family: $default-font-family;
+  font-size: $middle-font-size;
+  color: $color-white;
+  background-color: $bg-color-blue;
+}
+
+.sign-in-form {
+  width: 100%;
+}
+
+.input-container {
+  padding: 60px 0;
+  display: flex;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+  border-bottom: 1px solid $color-gray;
+  border-top: 1px solid $color-gray;
+  background-color: $color-light-blue;
+  &__icon {
+    width: 40px;
+    height: 40px;
+    margin-left: 60px;
+  }
+  &__text-input {
+    width: 100%;
+    background-color: transparent;
+    font-family: $default-font-family;
+    font-size: $regular-font-size;
+    color: $color-white;
+  }
+}
+
+.submit-container {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  &__button {
+    padding: 20px 150px;
+    font-family: $default-font-family;
+    font-size: $regular-font-size;
+    color: $color-red;
+    background-color: transparent;
+    border: 3px solid $color-red;
+    border-left: none;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+    transition: 0.5s;
+    &:hover {
+      background-color: $color-light-blue;
+    }
+  }
+}
+
+.link {
+  padding-left: 20px;
+  &__to-sign-up {
+    font-family: $default-font-family;
+    font-size: $small-font-size;
+    color: $color-gray;
+    transition: 0.5s;
+    text-decoration: none;
+    &:hover {
+      color: $color-white;
+    }
+  }
+}
+
+.error-container {
+  margin-left: 20px;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+
+  &__text-repeat-error {
+    position: absolute;
+    font-family: $default-font-family;
+    font-size: $middle-font-size;
+    color: $color-red;
+    animation: error-text-repeat 2s infinite;
+  }
+}
+
+@keyframes error-text-repeat {
+  from {
+    left: 0;
+  }
+  50% {
+    left: 5px;
+  }
+  60% {
+    left: 0;
+  }
+  70% {
+    left: 5px;
+  }
+  80% {
+    left: 0;
+  }
+  90% {
+    left: 5px;
+  }
+  to {
+    left: 0;
+  }
+}
