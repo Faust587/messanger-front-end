@@ -28,13 +28,12 @@ $default-font-family: "Rajdhani", sans-serif;
 .title {
   width: 50%;
   margin-right: 150px;
-}
-
-.title__text {
-  font-family: $default-font-family;
-  font-size: $big-font-size;
-  color: $color-white;
-  text-align: right;
+  &__text {
+    font-family: $default-font-family;
+    font-size: $big-font-size;
+    color: $color-white;
+    text-align: right;
+  }
 }
 
 .sign-in-container {
@@ -53,14 +52,13 @@ $default-font-family: "Rajdhani", sans-serif;
   padding-left: 150px;
   padding-bottom: 50px;
   width: 100%;
-}
-
-.sign-in-title__text {
-  display: inline-block;
-  font-family: $default-font-family;
-  font-size: $middle-font-size;
-  color: $color-white;
-  background-color: $bg-color-blue;
+  &__text {
+    display: inline-block;
+    font-family: $default-font-family;
+    font-size: $middle-font-size;
+    color: $color-white;
+    background-color: $bg-color-blue;
+  }
 }
 
 .sign-in-form {
