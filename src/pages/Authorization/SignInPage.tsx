@@ -1,7 +1,7 @@
 import React from "react";
 import {InformationBlock} from "../../components/informationBlock/InformationBlock";
 import {SignInForm} from "../../components/SignInForm/SignInForm";
-import "./SignInPage.scss";
+import "./Authorization.scss";
 
 export const SignInPage = () => {
 
