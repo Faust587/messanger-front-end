@@ -1,25 +1,54 @@
-export const usernameValidation = (username: string) => {
-  const errors:string[] = [];
-  const usernameClear = username.trim();
-  const validationRegExp = new RegExp(/^[a-zA-Z]+$/);
-  if (!usernameClear.match(validationRegExp))
-    errors.push("Your first name is not valid. Only characters A-Z, a-z and '-' are  acceptable.");
-  if (usernameClear.length < 3)
-    errors.push("Username must have more then 3 symbols");
-  if (usernameClear.length > 16)
-    errors.push("Username must have less then 16 symbols");
+import {errorType} from "../types/validationTypes";
+import {fields, errors} from "../const/validation"
+
+export const signUpValidation = (username: string, password: string, repeatedPassword: string): errorType[] => {
+  const errors: errorType[] = [];
+
+  const usernameValidationResult = usernameValidation(username);
+  const passwordValidationResult = passwordValidation(password);
+  const repeatPasswordValidationResult = repeatPasswordValidation(password, repeatedPassword);
+
+  if (usernameValidationResult) errors.push(usernameValidationResult);
+  if (passwordValidationResult) errors.push(passwordValidationResult);
+  if (repeatPasswordValidationResult) errors.push(repeatPasswordValidationResult);
+
   return errors;
 }
 
-export const passwordValidation = (password: string) => {
-  const passwordClear = password.trim();
-  const errors:string[] = [];
-  const validationRegExp = new RegExp(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]$/);
-  if (!passwordClear.match(validationRegExp))
-    errors.push("Your password is not valid");
-  if (passwordClear.length < 8)
-    errors.push("Your password must have more then 8 symbols");
-  if (passwordClear.length > 16)
-    errors.push("Your password must have less then 16 symbols");
+const signInValidation = (username: string, password: string): errorType[] => {
+  const errors: errorType[] = [];
+
   return errors;
+}
+
+const usernameValidation = (username: string): errorType | null => {
+  const validationRegExp = new RegExp(/^[a-zA-Z].{3,12}$/);
+  if (!username.match(validationRegExp) || username.length < 3 || username.length > 16) {
+    return {
+      field: fields.USERNAME_FIELD,
+      value: errors.USERNAME_IS_NOT_VALID
+    }
+  }
+  return null;
+}
+
+const passwordValidation = (password: string): errorType | null => {
+  const validationRegExp = new RegExp(/^(?=.*\d)(?=.*)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/);
+  if (!password.match(validationRegExp)) {
+    return {
+      field: fields.PASSWORD_FIELD,
+      value: errors.PASSWORD_IS_NOT_VALID
+    }
+  }
+  return null;
+}
+
+const repeatPasswordValidation = (password: string, repeatPassword: string): errorType | null => {
+  if (password !== repeatPassword) {
+    return {
+      field: fields.REPEAT_PASSWORD_FIELD,
+      value: errors.PASSWORDS_ARE_NOT_THE_SAME
+    }
+  }
+  return null;
 }
