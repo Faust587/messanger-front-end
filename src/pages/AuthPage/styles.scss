@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto&display=swap');
+@import "../../const/styles.scss";
+
+.auth-page-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-blue;
+  position: relative;
+}
+
+.greeting-container {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  width: 50vw;
+  height: 100vh;
+  background-color: $color-red;
+  &.sign-up {
+    justify-content: left;
+    left: 50vw;
+    animation: 0.5s swipe-greeting-left ease-in-out;
+    @keyframes swipe-greeting-left {
+      from {left: 0;}
+      to {left: 50vw;}
+    }
+  }
+  &.sign-in {
+    justify-content: right;
+    left: 0;
+    animation: 0.5s swipe-greeting-right ease-in-out;
+    @keyframes swipe-greeting-right {
+      from {left: 50vw;}
+      to {left: 0;}
+    }
+  }
+
+  &__text {
+    width: 25vw;
+    font-size: $big-font-size;
+    color: $color-white;
+    &.sign-up {
+      text-align: left;
+      margin-left: 30px;
+      animation: 1s show-text-left;
+
+      @keyframes show-text-left {
+        from {opacity: 0; margin-left: 0;}
+        to {opacity: 1; margin-left: 30px;}
+      }
+    }
+    &.sign-in {
+      text-align: right;
+      margin-right: 30px;
+      animation: 1s show-text-right;
+
+      @keyframes show-text-right {
+        from {opacity: 0; margin-right: 0;}
+        to {opacity: 1; margin-right: 30px;}
+      }
+    }
+
+    @extend %font-styles;
+  }
+}

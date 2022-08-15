@@ -1,0 +1,20 @@
+// COLORS
+$color-red: #F1615E;
+$color-blue: #353342;
+$color-white: #E9EAEC;
+$color-light-blue: #444652;
+$color-gray: #5c5c73;
+
+// FONT-SIZES
+$big-font-size: 60px;
+$middle-font-size: 40px;
+$regular-font-size: 30px;
+$small-font-size: 20px;
+$default-font-family: "Rajdhani", sans-serif;
+
+
+// TEMPLATES
+%font-styles {
+  font-family: $default-font-family;
+  font-size: $regular-font-size;
+}

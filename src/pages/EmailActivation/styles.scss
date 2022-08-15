@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto&display=swap');
+@import "../../const/styles.scss";
+
+.activation-container {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $color-blue;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.message {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 70px;
+
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: $color-red;
+    color: $color-white;
+    @extend %font-styles;
+
+    &:hover {
+      width: 260px;
+      background-color: $color-light-blue;
+      color: $color-red;
+      transition: 0.5s;
+    }
+    &:active {
+      width: 240px;
+      transition: 0.1s;
+    }
+  }
+}
+
+.title-block {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__icon {
+    width: 150px;
+    height: 150px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+
+  &__text {
+    font-size: $middle-font-size;
+    color: $color-red;
+    outline: none;
+    @extend %font-styles;
+  }
+}

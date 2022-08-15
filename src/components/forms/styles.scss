@@ -1,0 +1,63 @@
+@import "../../const/styles.scss";
+
+.sign-up-form {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__title {
+    padding-left: 8vw;
+    padding-bottom: 5vh;
+    font-size: $middle-font-size;
+    color: $color-white;
+    @extend %font-styles;
+  }
+  &__input-container {
+    padding-left: 4vw;
+    background-color: $color-light-blue;
+  }
+}
+
+.submit-container {
+  z-index: 2;
+  position: absolute;
+  top: 80vh;
+
+  &.left {
+    left: 35vw;
+  }
+
+  &.right {
+    left: 50vw;
+  }
+
+  &__button {
+    border: 3px solid $color-blue;
+    width: 15vw;
+    padding: 20px 0;
+    font-family: $default-font-family;
+    font-size: $regular-font-size;
+    color: $color-blue;
+    background-color: transparent;
+    transition: 0.5s;
+
+    &.sign-up {
+      border-right: none;
+      border-top-left-radius: 60px;
+      border-bottom-left-radius: 60px;
+    }
+
+    &.sign-in {
+      border-left: none;
+      border-top-right-radius: 60px;
+      border-bottom-right-radius: 60px;
+    }
+
+    &.active {
+      color: $color-red;
+      border-color: $color-red;
+    }
+  }
+}
