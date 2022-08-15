@@ -8,3 +8,13 @@ export type signUpDataType = {
   password: string,
   repeatPassword: string
 }
+
+export type signInResponse = {
+  user: {
+    id: string,
+    email: string,
+    username: string,
+    activated: boolean,
+  },
+  accessToken: string
+}

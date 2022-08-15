@@ -6,7 +6,8 @@ type PropsType = {
   imageURL: string,
   alt: string,
   placeholder: string,
-  value?: string | number,
+  error: string | null,
+  value?: string,
   setValue?: React.Dispatch<React.SetStateAction<string>>
 }
 
@@ -16,6 +17,7 @@ export const AuthInputElement: FC<PropsType> = (
     imageURL,
     alt,
     placeholder,
+    error,
     value,
     setValue
   }) => {
@@ -34,6 +36,9 @@ export const AuthInputElement: FC<PropsType> = (
         value={value ? value : undefined}
         onChange={(e) => setValue ? setValue(e.target.value) : undefined}
       />
+      {error ? <span className="auth-input-container__error-text">
+        {error}
+      </span> : null}
     </div>
   );
 }

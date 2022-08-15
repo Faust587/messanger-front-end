@@ -1,54 +1,111 @@
-import {errorType} from "../types/validationTypes";
+import {errorType, validationResultType} from "../types/validationTypes";
 import {fields, errors} from "../const/validation"
 
-export const signUpValidation = (username: string, password: string, repeatedPassword: string): errorType[] => {
-  const errors: errorType[] = [];
-
-  const usernameValidationResult = usernameValidation(username);
-  const passwordValidationResult = passwordValidation(password);
-  const repeatPasswordValidationResult = repeatPasswordValidation(password, repeatedPassword);
-
-  if (usernameValidationResult) errors.push(usernameValidationResult);
-  if (passwordValidationResult) errors.push(passwordValidationResult);
-  if (repeatPasswordValidationResult) errors.push(repeatPasswordValidationResult);
-
-  return errors;
-}
-
-const signInValidation = (username: string, password: string): errorType[] => {
-  const errors: errorType[] = [];
-
-  return errors;
-}
-
-const usernameValidation = (username: string): errorType | null => {
-  const validationRegExp = new RegExp(/^[a-zA-Z].{3,12}$/);
-  if (!username.match(validationRegExp) || username.length < 3 || username.length > 16) {
-    return {
-      field: fields.USERNAME_FIELD,
-      value: errors.USERNAME_IS_NOT_VALID
-    }
+export const signUpValidation = (username: string,
+                                 email: string,
+                                 password: string,
+                                 repeatedPassword: string): validationResultType => {
+  const result: validationResultType = {
+    result: true,
+    errors: []
   }
-  return null;
+
+  const usernameValidationResult = usernameValidation(username.trim());
+  const passwordValidationResult = passwordValidation(password.trim());
+  const repeatPasswordValidationResult = repeatPasswordValidation(password.trim(), repeatedPassword.trim());
+  const emailValidationResult = emailValidation(email);
+
+  result.errors.push(usernameValidationResult);
+  result.errors.push(passwordValidationResult);
+  result.errors.push(repeatPasswordValidationResult);
+  result.errors.push(emailValidationResult);
+
+  if (usernameValidationResult.value !== "") result.result = false;
+  if (passwordValidationResult.value !== "") result.result = false;
+  if (repeatPasswordValidationResult.value !== "") result.result = false;
+  if (emailValidationResult.value !== "") result.result = false;
+
+  return result;
 }
 
-const passwordValidation = (password: string): errorType | null => {
-  const validationRegExp = new RegExp(/^(?=.*\d)(?=.*)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/);
+const usernameValidation = (username: string): errorType => {
+
+  const result: errorType = {
+    field: fields.USERNAME_FIELD,
+    value: ""
+  }
+
+  if (username.length < 3) {
+    result.value = errors.USERNAME_LENGTH_SHOULD_BE_MORE;
+    return result;
+  }
+
+  if (username.length > 15) {
+    result.value = errors.USERNAME_LENGTH_SHOULD_BE_LESS;
+    return result;
+  }
+
+  const validationRegExp = new RegExp(/^[a-zA-Z]/);
+  if (!username.match(validationRegExp)) {
+    result.value = errors.USERNAME_IS_NOT_VALID;
+    return result;
+  }
+
+  return result;
+}
+
+const passwordValidation = (password: string): errorType => {
+
+  const result: errorType = {
+    field: fields.PASSWORD_FIELD,
+    value: ""
+  }
+
+  if (password.length < 3) {
+    result.value = errors.PASSWORD_LENGTH_SHOULD_BE_MORE;
+    return result;
+  }
+
+  if (password.length > 15) {
+    result.value = errors.PASSWORD_LENGTH_SHOULD_BE_LESS;
+    return result;
+  }
+
+  const validationRegExp = new RegExp(/^(?=.*\d)(?=.*)(?=.*[a-z])(?=.*[A-Z])/);
   if (!password.match(validationRegExp)) {
-    return {
-      field: fields.PASSWORD_FIELD,
-      value: errors.PASSWORD_IS_NOT_VALID
-    }
+    result.value = errors.PASSWORD_IS_NOT_VALID;
+    return result;
   }
-  return null;
+
+  return result;
 }
 
-const repeatPasswordValidation = (password: string, repeatPassword: string): errorType | null => {
-  if (password !== repeatPassword) {
-    return {
-      field: fields.REPEAT_PASSWORD_FIELD,
-      value: errors.PASSWORDS_ARE_NOT_THE_SAME
-    }
+const repeatPasswordValidation = (password: string, repeatPassword: string): errorType => {
+
+  const result: errorType = {
+    field: fields.REPEAT_PASSWORD_FIELD,
+    value: ""
   }
-  return null;
+
+  if (password !== repeatPassword) {
+    result.value = errors.PASSWORDS_ARE_NOT_THE_SAME;
+    return result;
+  }
+  return result;
+}
+
+const emailValidation = (email: string) => {
+  const result: errorType = {
+    field: fields.EMAIL_FIELD,
+    value: ""
+  }
+
+  const validationRegexp = new RegExp(/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i);
+
+  if (!email.match(validationRegexp)) {
+    result.value = errors.EMAIL_IS_NOT_VALID;
+    return result;
+  }
+
+  return result;
 }

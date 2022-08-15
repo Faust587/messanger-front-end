@@ -1,18 +1,20 @@
 import React from 'react';
 import {Routes, Route, BrowserRouter} from "react-router-dom";
 import "./scss/reset.scss";
-import {AuthorizationPage} from "./pages/Authorization/AuthorizationPage";
-import {AuthInputElement} from "./UI/inputElement/AuthInput";
-import userIcon from "./assets/images/icons/user-icon.svg";
+import {AuthPage} from "./pages/AuthPage";
+import {ActivationSuccess} from "./pages/EmailActivation/ActivationSuccess";
+import {ActivationFail} from "./pages/EmailActivation/ActivationFail";
 
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<AuthorizationPage />} />
+        <Route path="/" element={<AuthPage />} />
+        <Route path="/activation-success" element={<ActivationSuccess />} />
+        <Route path="/activation-fail" element={<ActivationFail />} />
       </Routes>
     </BrowserRouter>
-    //<AuthInputElement type={"text"} alt="user logo" imageURL={userIcon} placeholder="Username" />
   );
 }
 

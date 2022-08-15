@@ -1,25 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto&display=swap');
+@import "../../../const/styles.scss";
 
-$color-red: #F1615E;
-$color-blue: #353342;
-$color-white: #E9EAEC;
-$color-light-blue: #444652;
-$color-gray: #5c5c73;
-
-$big-font-size: 60px;
-$middle-font-size: 40px;
-$regular-font-size: 30px;
-$small-font-size: 20px;
-$default-font-family: "Rajdhani", sans-serif;
-
-%font-styles {
-  font-family: $default-font-family;
-  font-size: $regular-font-size;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+  -webkit-text-fill-color: $color-white;
+  -webkit-box-shadow: 0 0 0 30px $color-light-blue inset !important;
 }
 
 .auth-input-container {
-  width: 100%;
   display: flex;
+  align-items: center;
   padding: 20px 0;
 
   &__logo {
@@ -28,9 +20,25 @@ $default-font-family: "Rajdhani", sans-serif;
     width: 40px;
   }
   &__input {
-    width: 100%;
+    background-color: transparent;
     color: $color-white;
+    @extend %font-styles;
+  }
+  &__error-text {
+    padding: 0 20px;
+    color: $color-red;
+    animation: 1s error-text-animation;
 
+    @keyframes error-text-animation {
+      from {
+        opacity: 0;
+        margin-left: 40px;
+      }
+      to {
+        opacity: 1;
+        margin-left: 0;
+      }
+    }
     @extend %font-styles;
   }
 }
