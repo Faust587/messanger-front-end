@@ -6,8 +6,12 @@ export const useAuthorization = (): boolean => {
     return false;
   }
 
-  axios.get(`${process.env.REACT_APP_API_URL}/refresh`, {withCredentials: true}).then(data => {
-    console.log(data);
-  });
+  axios.get(`${process.env.REACT_APP_API_URL}/refresh`, {withCredentials: true})
+    .then(data => {
+      console.log(data);
+    })
+    .catch(() => {
+      return false;
+    });
   return true;
 }
