@@ -1,5 +1,4 @@
 import axios from "axios";
-import {Simulate} from "react-dom/test-utils";
 
 const api = axios.create({
   withCredentials: true,
